@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
   return (
     <div className="min-h-screen bg-linear-to-br from-zinc-50 via-white to-purple-50 dark:from-black dark:via-zinc-900 dark:to-purple-950">
@@ -211,12 +213,18 @@ export default function About() {
                 creators
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-4 bg-white text-purple-600 font-semibold rounded-full hover:bg-purple-50 transition-all duration-300 hover:scale-105 shadow-xl">
+                <Link
+                  href="/create-blog"
+                  className="px-8 py-4 bg-white text-purple-600 font-semibold rounded-full hover:bg-purple-50 transition-all duration-300 hover:scale-105 shadow-xl"
+                >
                   Start Writing Today
-                </button>
-                <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300">
+                </Link>
+                <Link
+                  href="/privacy"
+                  className="px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+                >
                   Learn More
-                </button>
+                </Link>
               </div>
             </div>
           </div>

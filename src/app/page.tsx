@@ -28,10 +28,13 @@ export default function Home() {
                 creators.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                <button className="group relative px-8 py-4 bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105">
+                <Link
+                  href="/create-blog"
+                  className="group relative px-8 py-4 bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
+                >
                   <span className="absolute inset-0 rounded-full bg-linear-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <span className="relative">Start Writing</span>
-                </button>
+                </Link>
                 <Link
                   href="/blog"
                   className="px-8 py-4 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white font-semibold rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300"
@@ -99,9 +102,12 @@ export default function Home() {
                 <p className="text-blue-100 text-lg mb-8">
                   Join thousands of writers sharing their stories today
                 </p>
-                <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-xl">
+                <Link
+                  href="/create-blog"
+                  className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-xl"
+                >
                   Get Started Free
-                </button>
+                </Link>
               </div>
             </div>
           </div>

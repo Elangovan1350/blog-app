@@ -15,15 +15,7 @@ interface BlogPost {
   category: string;
   tags: string[];
   readTime: string;
-  authorName: string;
-  authorId: string;
-  author: {
-    id: string;
-    name: string;
-    email: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+
   createdAt: string;
   updatedAt: string;
 }
@@ -111,7 +103,7 @@ export default function BlogPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4 flex flex-col h-auto justify-between">
                   {/* Meta Info */}
                   <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
                     <div className="flex items-center gap-1">
@@ -139,7 +131,7 @@ export default function BlogPage() {
 
                   {/* Excerpt */}
                   <Link href={`/blog/${post.id}`}>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                    <p className="text-sm text-zinc-600 line-clamp-2 dark:text-zinc-400">
                       {post.excerpt}
                     </p>
                   </Link>
@@ -158,18 +150,7 @@ export default function BlogPage() {
                   </div>
 
                   {/* Author & Read More */}
-                  <div className="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-                        {post.authorName
-                          .split(" ")
-                          .map((n: string) => n[0])
-                          .join("")}
-                      </div>
-                      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                        {post.authorName}
-                      </span>
-                    </div>
+                  <div className="flex items-center justify-end pt-4 border-t border-zinc-200 dark:border-zinc-800">
                     <Link
                       href={`/blog/${post.id}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all duration-300"
@@ -182,11 +163,6 @@ export default function BlogPage() {
                     </Link>
                   </div>
                 </div>
-
-                {/* Hover Gradient Border Effect */}
-                {/* <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500 via-purple-500 to-blue-500 opacity-20 blur-xl"></div>
-                </div> */}
               </article>
             ))}
           </div>

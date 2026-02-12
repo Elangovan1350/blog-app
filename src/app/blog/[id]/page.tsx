@@ -27,15 +27,7 @@ interface BlogPost {
   category: string;
   tags: string[];
   readTime: string;
-  authorName: string;
-  authorId: string;
-  author: {
-    id: string;
-    name: string;
-    email: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+
   createdAt: string;
   updatedAt: string;
 }
@@ -166,24 +158,6 @@ export default function SingleBlogPage() {
 
           {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-zinc-200 dark:border-zinc-800">
-            {/* Author */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
-                {currentPost.authorName
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
-              <div>
-                <p className="font-semibold text-zinc-900 dark:text-white">
-                  {currentPost.authorName}
-                </p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  Author
-                </p>
-              </div>
-            </div>
-
             {/* Date */}
             <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
               <Calendar size={18} />
@@ -284,28 +258,6 @@ export default function SingleBlogPage() {
                 >
                   <Link2 size={18} />
                 </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Author Bio */}
-          <div className="mb-12 p-8 rounded-2xl bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 border border-blue-200 dark:border-blue-800">
-            <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
-                {currentPost.authorName
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">
-                  About {currentPost.authorName}
-                </h3>
-                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  A passionate writer and content creator sharing insights about
-                  technology, design, and development. Follow for more articles
-                  and updates.
-                </p>
               </div>
             </div>
           </div>

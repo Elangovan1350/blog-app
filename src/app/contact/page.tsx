@@ -222,12 +222,12 @@ export default function Contact() {
                   {
                     icon: "📧",
                     title: "Email Us",
-                    content: "hello@blogapp.com",
+                    content: "elangovan2019miss@gmail.com",
                   },
                   {
                     icon: "📞",
                     title: "Call Us",
-                    content: "+1 (555) 123-4567",
+                    content: "+91 6383479344",
                   },
                   {
                     icon: "🕐",

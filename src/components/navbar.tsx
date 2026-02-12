@@ -144,7 +144,10 @@ export default function Navbar() {
 
           {/* CTA Button - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="relative group overflow-hidden px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300">
+            <Link
+              href="/create-blog"
+              className="relative group overflow-hidden px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300"
+            >
               <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-600 transition-transform duration-300 group-hover:scale-105"></div>
               <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <span className="relative text-white flex items-center space-x-2">
@@ -163,7 +166,7 @@ export default function Navbar() {
                   />
                 </svg>
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
