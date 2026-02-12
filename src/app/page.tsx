@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
@@ -30,9 +32,12 @@ export default function Home() {
                   <span className="absolute inset-0 rounded-full bg-linear-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <span className="relative">Start Writing</span>
                 </button>
-                <button className="px-8 py-4 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white font-semibold rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300">
+                <Link
+                  href="/blog"
+                  className="px-8 py-4 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white font-semibold rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300"
+                >
                   Explore Blogs
-                </button>
+                </Link>
               </div>
             </div>
           </div>

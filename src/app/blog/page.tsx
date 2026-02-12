@@ -85,26 +85,29 @@ export default function BlogPage() {
       <section className="pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogsPosts?.map((post: any) => (
+            {blogsPosts?.map((post: BlogPost) => (
               <article
-                key={post.title}
+                key={post.id}
                 className="group relative bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-2"
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden bg-linear-to-br from-blue-500 to-purple-600">
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10"></div>
-                  <div className="absolute top-4 right-4 z-20">
-                    <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm text-xs font-semibold text-blue-600 dark:text-blue-400">
-                      {post.category}
-                    </span>
-                  </div>
-
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10"
+                  >
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm text-xs font-semibold text-blue-600 dark:text-blue-400">
+                        {post.category}
+                      </span>
+                    </div>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </Link>
                 </div>
 
                 {/* Content */}
@@ -128,14 +131,18 @@ export default function BlogPage() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
-                    {post.title}
-                  </h2>
+                  <Link href={`/blog/${post.id}`}>
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
+                      {post.title}
+                    </h2>
+                  </Link>
 
                   {/* Excerpt */}
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
-                    {post.excerpt}
-                  </p>
+                  <Link href={`/blog/${post.id}`}>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  </Link>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2">
@@ -164,10 +171,7 @@ export default function BlogPage() {
                       </span>
                     </div>
                     <Link
-                      href={`/blog/${post.title
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]+/g, "-")
-                        .replace(/(^-|-$)/g, "")}`}
+                      href={`/blog/${post.id}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all duration-300"
                     >
                       Read
@@ -180,9 +184,9 @@ export default function BlogPage() {
                 </div>
 
                 {/* Hover Gradient Border Effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                {/* <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                   <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500 via-purple-500 to-blue-500 opacity-20 blur-xl"></div>
-                </div>
+                </div> */}
               </article>
             ))}
           </div>

@@ -11,32 +11,40 @@ gsap.registerPlugin(useGSAP);
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const container = useRef(null);
   const iconRef = useRef(null);
   const mobileMenuRef = useRef(null);
+  const isFirstRender = useRef(true);
 
+  const tl = useRef<GSAPTimeline>(null);
   const handleToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
   useGSAP(
     () => {
-      const tl = gsap.timeline();
-
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+      }
       if (isMobileMenuOpen) {
         // OPENING ANIMATION
-        tl.to(iconRef.current, {
-          rotate: 360,
-          duration: 0.3,
-          onComplete: () => {
-            setIsMenuOpen(true);
-          },
-        })
+        tl.current = gsap
+          .timeline({ defaults: { ease: "power2.out" } })
+          .to(iconRef.current, {
+            rotate: 360,
+            duration: 0.3,
+          })
           .fromTo(
             mobileMenuRef.current,
             { height: 0, opacity: 0 },
-            { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" },
+            {
+              height: "auto",
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            },
             "<",
           )
           .fromTo(
@@ -45,15 +53,16 @@ export default function Navbar() {
             { y: 0, opacity: 1, stagger: 0.1, duration: 0.3 },
             "-=0.2",
           );
-      } else {
+      }
+
+      if (!isMobileMenuOpen) {
         // CLOSING ANIMATION
-        tl.to(iconRef.current, {
-          rotate: 0,
-          duration: 0.3,
-          onComplete: () => {
-            setIsMenuOpen(false);
-          },
-        })
+        tl.current = gsap
+          .timeline({ defaults: { ease: "power2.out" } })
+          .to(iconRef.current, {
+            rotate: -360,
+            duration: 0.3,
+          })
           .to(
             ".navlinks",
             {
@@ -65,15 +74,18 @@ export default function Navbar() {
             },
             "<",
           )
-          .to(mobileMenuRef.current, {
-            height: 0,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power2.in",
-          });
+          .fromTo(
+            mobileMenuRef.current,
+            { height: 236, opacity: 1 },
+            { height: 0, opacity: 0, duration: 0.4, ease: "power2.in" },
+          );
       }
     },
-    { scope: container, dependencies: [isMobileMenuOpen] },
+    {
+      scope: container,
+      dependencies: [isMobileMenuOpen],
+      revertOnUpdate: true,
+    },
   );
 
   useEffect(() => {
@@ -161,7 +173,7 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <span ref={iconRef} className="text-zinc-800 dark:text-zinc-200">
-              {isMenuOpen ? (
+              {isMobileMenuOpen ? (
                 <X id="close" size={28} />
               ) : (
                 <Menu id="open" size={24} />
@@ -172,7 +184,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div ref={mobileMenuRef} className={`md:hidden overflow-hidden`}>
+      <div ref={mobileMenuRef} className={`md:hidden h-0 overflow-hidden`}>
         <div className="px-4 pt-2 pb-6 space-y-1 bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-800">
           {navLinks.map((link) => (
             <Link
