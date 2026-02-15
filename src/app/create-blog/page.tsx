@@ -6,7 +6,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
-import useSWR from "swr";
+import { useSWRConfig } from "swr";
 import {
   PenTool,
   Image as ImageIcon,
@@ -66,6 +66,7 @@ export default function CreateBlogPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tagInput, setTagInput] = useState("");
+  const { mutate } = useSWRConfig();
 
   const {
     register,
@@ -132,6 +133,7 @@ export default function CreateBlogPage() {
       if (response.status === 201) {
         toast.success("Blog post created successfully!");
         router.push(`/blog/${response.data.id}`);
+        mutate("api/blogs");
       }
     } catch (error) {
       console.error("Error creating blog post:", error);

@@ -76,7 +76,7 @@ export default function Navbar() {
           )
           .fromTo(
             mobileMenuRef.current,
-            { height: 236, opacity: 1 },
+            { height: 288.8, opacity: 1 },
             { height: 0, opacity: 0, duration: 0.4, ease: "power2.in" },
           );
       }
@@ -199,6 +199,13 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          <Link
+            href="/create-blog"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="navlinks block text-blue-500 px-4 py-3  text-base font-medium hover:text-blue-600 dark:hover:text-blue-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 rounded-lg"
+          >
+            Create Blog
+          </Link>
         </div>
       </div>
     </nav>
